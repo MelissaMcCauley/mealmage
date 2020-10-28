@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My apps
-
     'mealmageapp',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +122,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# My settings
+LOGOUT_REDIRECT_URL = '/'
+
+LOGIN_URL = '/users/login/'
+
+# Settings for django-bootstrap4
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}

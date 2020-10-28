@@ -1,0 +1,17 @@
+{% extends "mealmageapp/base.html" %}
+
+{% block content %}
+
+	<p>What would you like to do?</p>
+
+	<ul>
+		<li>
+			<a href="{% url 'mealmageapp:meals' %}">Your Meals</a>
+		</li>	
+		<!-- <li>
+			<a href="{% url 'mealmageapp:mealplanning' %}">Create a Meal Plan</a>
+		</li>	
+		<li>
+			<a href="{% url 'mealmageapp:grocerylist' %}">Grocery List</a>
+		</li> -->
+	</ul>		

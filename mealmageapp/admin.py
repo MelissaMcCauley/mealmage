@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from mealmageapp.models import StoredDish #, GroceryList
+
+admin.site.register(StoredDish)
+# admin.site.register(GroceryList)

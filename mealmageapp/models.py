@@ -19,25 +19,25 @@ class StoredDish(models.Model):
 		return self.dish_title
 
 
-# class MealPlan(models.Model):
-# 	"""A collection of meals pulled from StoredDish for a certain period of time"""
-# 	meal_plan_dish_title = models.ForeignKey(StoredDish, 
-# 		on_delete=models.CASCADE)
+class MealPlan(models.Model):
+	"""A collection of meals pulled from StoredDish for a certain period of time"""
+	meal_plan_dish_title = models.ForeignKey(StoredDish, 
+		on_delete=models.CASCADE)
 
 
-# 	def __str__(self):
-# 		"""Return a string representation of the model"""
-# 		return self.meal_plan_dish_title	
+	def __str__(self):
+		"""Return a string representation of the model"""
+		return self.meal_plan_dish_title	
 
 
-# class GroceryList(models.Model):
-# 	"""A grocery list created by the user"""
-# 	grocery_list_item = models.CharField(max_length=100)
-# 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
+class GroceryList(models.Model):
+	"""A grocery list created by the user"""
+	grocery_list_item = models.CharField(max_length=100)
+	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
-# 	def __str__(self):
-# 		"""Return a string representation of the model"""
-# 		return self.grocery_list_item
+	def __str__(self):
+		"""Return a string representation of the model"""
+		return self.grocery_list_item
 
 
 

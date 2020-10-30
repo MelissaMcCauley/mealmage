@@ -13,5 +13,11 @@ urlpatterns = [
 	path('options/', views.options, name='options'),
 
 	# Meals page that is linked from Options
-	path('meals/', views.meals, name='meals')
+	path('meals/', views.meals, name='meals'),
+
+	path('mealplanning/', views.mealplanning, name='mealplanning'),
+
+	path('grocerylist/', views.grocerylist, name='grocerylist'),
+
+	path('meals/<int:meal_id>/', views.meal, name='meal'),
 ]

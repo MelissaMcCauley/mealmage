@@ -1,6 +1,16 @@
 {% extends "mealmageapp/base.html" %}
 
+{% block header %}
+	<div class='jumbotron'>
+		<h1>Meal planning made easy!</h1>
+	</div>	
+{% endblock header %}
+
+
 {% block content %}
-<p>Meal Mage makes meal planning with your favorite recipes a snap, so you can 
-finally have an answer to "What's for Dinner?"</p>
+	<h2>
+		Meal Mage makes meal planning with your favorite recipes a snap. 
+		<a href="{% url 'users:register' %}">Register</a> today so you can 
+		finally have an answer to "What's for Dinner?"
+  </h2>
 {% endblock content %}

@@ -1,12 +1,48 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+
 class StoredDish(models.Model):
 	"""A particular dish that has been added by the user to their account"""
+	DISH_TYPE_CHOICES = [
+		('entree', 'Entree'),
+		('side', 'Side'),
+		('appetizer', 'Appetizer'),
+		('dessert', 'Dessert'),
+	]
+	MEAL_TYPE_CHOICES = [
+		('breakfast', 'Breakfast'),
+		('brunch', 'Brunch'),
+		('lunch', 'Lunch'),
+		('dinner', 'Dinner'),
+	]
+	CUISINE_TYPE_CHOICES = [
+		('american', 'American'),
+		('italian', 'Italian'),
+		('korean', 'Korean'),
+		('indian', 'Indian'),
+		('ethiopian', 'Ethiopian'),
+		('vietnamese', 'Vietnamese'),
+		('thai', 'Thai'),
+		('sushi', 'Sushi'),
+		('panasian', 'Pan Asian'),
+		('mexican', 'Mexican'),
+		('german', 'German'),
+		('japanese', 'Japanese'),
+		('cajun', 'Cajun'),
+		('texmex', 'Texmex'),
+		('greek', 'Greek'),
+		('mediterranean', 'Mediterranean'),
+		('french', 'French'),
+		('southern', 'Southern'),
+		('spanish', 'Spanish'),
+		('other', 'Other'),
+	]
 	dish_title = models.CharField(max_length=200) # required
-	dish_type = models.CharField(max_length=20) # required - options provided in drop down such as "entree", "side", "dessert", "appetizer"
-	meal_type = models.CharField(max_length=20, blank=True) # required - will use labels like Breakfast, Lunch, Dinner, Brunch, Snack
-	cuisine_type = models.CharField(max_length=50, blank=True) # optional - (e.g. Italian, Korean, Indian...etc.) 
+	dish_type = models.CharField(max_length=20, choices=DISH_TYPE_CHOICES) # required 
+	meal_type = models.CharField(max_length=20, choices=MEAL_TYPE_CHOICES) # required
+	cuisine_type = models.CharField(max_length=50, blank=True, choices=CUISINE_TYPE_CHOICES) # optional 
 	ingredient = models.CharField(max_length=50, blank=True) # optional - block of text or separate field for each ingredient?
 	recipe = models.TextField(blank=True) # optional - block of text or separate field for each step?
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)

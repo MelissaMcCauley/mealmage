@@ -20,4 +20,6 @@ urlpatterns = [
 	path('grocerylist/', views.grocerylist, name='grocerylist'),
 
 	path('meals/<int:meal_id>/', views.meal, name='meal'),
+
+	path('addmeal/', views.addmeal, name='addmeal'),
 ]

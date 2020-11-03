@@ -12,6 +12,8 @@
 		{% empty %}
 			<li>No meals have been added yet.</li>
 		{% endfor %}
-	</ul>		
+	</ul>
+
+	<a href="{% url 'mealmageapp:addmeal' %}" class="btn btn-primary">Add a New Dish</a>
 
 {% endblock content %}

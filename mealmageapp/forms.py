@@ -1,8 +1,8 @@
-from django import forms
+from django.forms import ModelForm
 
 from .models import StoredDish
 
-class StoredDishForm(forms.ModelForm):
+class StoredDishForm(ModelForm):
 	class Meta:
 		model = StoredDish
 		fields = ['dish_title', 'meal_type', 'dish_type', 'cuisine_type', 
@@ -13,7 +13,7 @@ class StoredDishForm(forms.ModelForm):
 				  'cuisine_type':'Cuisine Type',
 				  'ingredient':'Ingredient',
 				  'recipe':'Recipe',	
-					}
+					}					
 
 
 # class GroceryListForm(forms.ModelForm):

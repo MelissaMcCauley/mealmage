@@ -22,7 +22,24 @@ def meals(request):
 	return render(request, 'mealmageapp/meals.html', context)
 
 @login_required
-def meal(request, meal_id):
+def addmeal(request):
+	"""Allows user to add a new dish to their account"""
+	if request.method != 'POST':
+		# No data submitted, create a blank form
+		form = StoredDishForm()
+	else:
+		# POST data submitted; process the data
+		form = StoredDishForm(data=request.POST)
+		if form.is_valid():
+			new_meal = form.save()
+			new_meal.save()
+			return HttpResponseRedirect(reverse('mealmageapp:meals'))
+
+	context = {'form': form}
+	return render(request, 'mealmageapp/addmeal.html', context)
+
+@login_required
+def meal(request, meal_id): # how do I display all the values for each attribute in StoredDish?
 	meal = StoredDish.objects.get(id=meal_id)
 	context = {'meal': meal}
 	return render(request, 'mealmageapp/meal.html', context)	

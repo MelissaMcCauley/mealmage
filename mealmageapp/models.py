@@ -42,8 +42,22 @@ class StoredDish(models.Model):
 	dish_title = models.CharField(max_length=200) # required
 	dish_type = models.CharField(max_length=20, choices=DISH_TYPE_CHOICES) # required 
 	meal_type = models.CharField(max_length=20, choices=MEAL_TYPE_CHOICES) # required
-	cuisine_type = models.CharField(max_length=50, blank=True, choices=CUISINE_TYPE_CHOICES) # optional 
-	ingredient = models.CharField(max_length=50, blank=True) # optional - block of text or separate field for each ingredient?
+	cuisine_type = models.CharField(max_length=50, blank=True, choices=CUISINE_TYPE_CHOICES) # optional
+	ingredient01 = models.CharField(max_length=50, blank=True) # optional
+	ingredient02 = models.CharField(max_length=50, blank=True) # optional
+	ingredient03 = models.CharField(max_length=50, blank=True) # optional
+	ingredient04 = models.CharField(max_length=50, blank=True) # optional
+	ingredient05 = models.CharField(max_length=50, blank=True) # optional
+	ingredient06 = models.CharField(max_length=50, blank=True) # optional
+	ingredient07 = models.CharField(max_length=50, blank=True) # optional
+	ingredient08 = models.CharField(max_length=50, blank=True) # optional
+	ingredient09 = models.CharField(max_length=50, blank=True) # optional
+	ingredient10 = models.CharField(max_length=50, blank=True) # optional
+	ingredient11 = models.CharField(max_length=50, blank=True) # optional
+	ingredient12 = models.CharField(max_length=50, blank=True) # optional
+	ingredient13 = models.CharField(max_length=50, blank=True) # optional
+	ingredient14 = models.CharField(max_length=50, blank=True) # optional
+	ingredient15 = models.CharField(max_length=50, blank=True) # optional
 	recipe = models.TextField(blank=True) # optional - block of text or separate field for each step?
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 

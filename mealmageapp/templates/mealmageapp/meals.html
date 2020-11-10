@@ -7,7 +7,7 @@
 	<ul>
 		{% for meal in meals %}
 			<li>
-				<a href="{% url 'mealmageapp:meal' meal.id %}">{{ meal }}</a>
+				<a href="{% url 'mealmageapp:meal_detail' meal.id %}">{{ meal }}</a>
 				</li>  
 		{% empty %}
 			<li>No meals have been added yet.</li>

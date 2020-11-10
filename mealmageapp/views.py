@@ -39,10 +39,10 @@ def addmeal(request):
 	return render(request, 'mealmageapp/addmeal.html', context)
 
 @login_required
-def meal(request, meal_id): # how do I display all the values for each attribute in StoredDish?
+def meal_detail(request, meal_id): # how do I display all the values for each attribute in StoredDish?
 	meal = StoredDish.objects.get(id=meal_id)
 	context = {'meal': meal}
-	return render(request, 'mealmageapp/meal.html', context)	
+	return render(request, 'mealmageapp/meal_detail.html', context)	
 
 @login_required
 def mealplanning(request):

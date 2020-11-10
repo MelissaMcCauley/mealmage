@@ -1,0 +1,35 @@
+{% extends 'mealmageapp/base.html' %}
+
+{% block content %}
+
+	<p>Meal: {{ meal }}</p>
+	
+			<p>Dish Type:  {{ meal.dish_type }}</p>
+			<p>Meal Type:  {{ meal.meal_type }}</p>
+			<p>Cuisine Type:  {{ meal.cuisine_type }}</p>
+			<p>Ingredients:  
+				<ul>
+					<li>{{ meal.ingredient01 }}</li>
+					<li>{{ meal.ingredient02 }}</li>
+					<li>{{ meal.ingredient03 }}</li>
+					<li>{{ meal.ingredient04 }}</li>
+					<li>{{ meal.ingredient05 }}</li>
+					<li>{{ meal.ingredient06 }}</li>
+					<li>{{ meal.ingredient07 }}</li>
+					<li>{{ meal.ingredient08 }}</li>
+					<li>{{ meal.ingredient09 }}</li>
+					<li>{{ meal.ingredient10 }}</li>
+					<li>{{ meal.ingredient11 }}</li>
+					<li>{{ meal.ingredient12 }}</li>
+					<li>{{ meal.ingredient13 }}</li>
+					<li>{{ meal.ingredient14 }}</li>
+					<li>{{ meal.ingredient15 }}</li>
+				</ul>
+			</p>
+			<p>Recipe:  {{ meal.recipe }}</p>
+
+<!-- Need to add Update button (will send to a page with a form for that) -->
+
+<!-- Need to add Delete button -->
+
+{% endblock content %}

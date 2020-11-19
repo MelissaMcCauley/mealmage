@@ -1,0 +1,15 @@
+{% extends "mealmageapp/base.html" %}
+
+{% block content %}
+
+	<p><a href="{% url 'mealmageapp:updatedish' dish.id %}">{{ dish }}</a></p>
+
+	<p>Update Dish:</p>
+
+	<form action="{% url 'mealmageapp:updatedish' dish.id %}" method='post'>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button name="submit">Save Dish</button>
+	</form>
+	
+{% endblock content %}		

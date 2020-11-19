@@ -1,0 +1,19 @@
+{% extends "mealmageapp/base.html" %}
+
+{% block content %}
+
+	<p>Dishes</p>
+
+	<ul>
+		{% for dish in dishes %}
+			<li>
+				<a href="{% url 'mealmageapp:dish_detail' dish.id %}">{{ dish }}</a>
+				</li>  
+		{% empty %}
+			<li>No dishes have been added yet.</li>
+		{% endfor %}
+	</ul>
+
+	<a href="{% url 'mealmageapp:newdish' %}" class="btn btn-primary">Add a New Dish</a>
+
+{% endblock content %}

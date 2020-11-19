@@ -4,6 +4,8 @@ from django.urls import path
 
 from . import views
 
+from .views import DishDelete
+
 app_name = 'mealmageapp'
 urlpatterns = [
 	# Home page
@@ -13,13 +15,19 @@ urlpatterns = [
 	path('options/', views.options, name='options'),
 
 	# Meals page that is linked from Options
-	path('meals/', views.meals, name='meals'),
+	path('dishes/', views.dishes, name='dishes'),
 
 	path('mealplanning/', views.mealplanning, name='mealplanning'),
 
 	path('grocerylist/', views.grocerylist, name='grocerylist'),
 
-	path('meals/<int:meal_id>/', views.meal_detail, name='meal_detail'),
+	path('<int:dish_id>/', views.dish_detail, name='dish_detail'),
 
-	path('addmeal/', views.addmeal, name='addmeal'),
+	path('newdish/', views.newdish, name='newdish'),
+
+	# path('<int:dish_id>/update_dish/', views.update_dish, name='dish_delete') ---??
+
+	path('<pk>/delete/', DishDelete.as_view(), name='dish_delete'),
+
+
 ]

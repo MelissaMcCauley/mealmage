@@ -1,0 +1,38 @@
+{% extends 'mealmageapp/base.html' %}
+
+{% block content %}
+
+	<p>Dish: {{ dish }}</p>
+	
+			<p>Dish Type:  {{ dish.dish_type }}</p>
+			<p>Meal Type:  {{ dish.meal_type }}</p>
+			<p>Cuisine Type:  {{ dish.cuisine_type }}</p>
+			<p>Ingredients:  
+				<ul>
+					<li>{{ dish.ingredient01 }}</li>
+					<li>{{ dish.ingredient02 }}</li>
+					<li>{{ dish.ingredient03 }}</li>
+					<li>{{ dish.ingredient04 }}</li>
+					<li>{{ dish.ingredient05 }}</li>
+					<li>{{ dish.ingredient06 }}</li>
+					<li>{{ dish.ingredient07 }}</li>
+					<li>{{ dish.ingredient08 }}</li>
+					<li>{{ dish.ingredient09 }}</li>
+					<li>{{ dish.ingredient10 }}</li>
+					<li>{{ dish.ingredient11 }}</li>
+					<li>{{ dish.ingredient12 }}</li>
+					<li>{{ dish.ingredient13 }}</li>
+					<li>{{ dish.ingredient14 }}</li>
+					<li>{{ dish.ingredient15 }}</li>
+				</ul>
+			</p>
+			<p>Recipe:  {{ dish.recipe }}</p>
+
+<!-- Need to add Update button (will send to a page with a form for that) -->
+
+<form action="{% url 'mealmageapp:dish_delete' StoredDish.id %}" method="post">
+	{% csrf_token %}
+	<input type = "submit" value="Delete Dish">
+</form>	
+
+{% endblock content %}

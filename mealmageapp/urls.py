@@ -4,8 +4,6 @@ from django.urls import path
 
 from . import views
 
-from .views import DishDelete
-
 app_name = 'mealmageapp'
 urlpatterns = [
 	# Home page
@@ -25,9 +23,9 @@ urlpatterns = [
 
 	path('newdish/', views.newdish, name='newdish'),
 
-	# path('<int:dish_id>/update_dish/', views.update_dish, name='dish_delete') ---??
+	# path('<int:dish_id>/updatedish/', views.updatedish, name='updatedish'),
 
-	path('<pk>/delete/', DishDelete.as_view(), name='dish_delete'),
+	path('<int:dish_id>/dish_delete/', views.dish_delete, name='dish_delete'),
 
 
 ]

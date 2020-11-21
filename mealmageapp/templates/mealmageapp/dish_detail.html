@@ -28,11 +28,8 @@
 			</p>
 			<p>Recipe:  {{ dish.recipe }}</p>
 
-<!-- Need to add Update button (will send to a page with a form for that) -->
+<!-- Need add Update and Delete buttons (will send to a page with a form for that) -->
 
-<form action="{% url 'mealmageapp:dish_delete' StoredDish.id %}" method="post">
-	{% csrf_token %}
-	<input type = "submit" value="Delete Dish">
-</form>	
+<a class="btn btn-sm btn-danger" href="{% url 'mealmageapp:dish_delete' dish.id %}">Delete</a>
 
 {% endblock content %}

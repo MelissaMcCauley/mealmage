@@ -1,0 +1,15 @@
+{% extends "mealmageapp/base.html" %}
+
+{% block content %}
+
+<p>Are you sure you want to delete "{{ dish }}"?</p>
+
+<form action="{% url 'mealmageapp:dish_delete' dish.id %}" method="POST">
+	{% csrf_token %}
+		
+		<a class="btn btn-warning" href="{% url 'mealmageapp:dish_detail' dish.id %}">Cancel</a>
+
+		<input class="btn btn-danger" type="submit" name="Confirm">
+</form>	
+
+{% endblock content %}

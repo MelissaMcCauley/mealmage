@@ -1,10 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
-from django.urls import reverse_lazy
-from django.views.generic.edit import DeleteView
 
 from .models import StoredDish
+from .forms import StoredDishForm
 
 def index(request):
 	"""The home page for Meal Mage"""
@@ -20,7 +19,7 @@ def dishes(request):
 	"""This page lists the titles of all meals currently stored by the user with
 	links to be able to create, read, update, or delete a meal"""
 	dishes = StoredDish.objects.filter(owner=request.user)
-	context = {'meals': meals}
+	context = {'dishes': dishes}
 	return render(request, 'mealmageapp/dishes.html', context)
 
 @login_required
@@ -33,22 +32,28 @@ def newdish(request):
 		# POST data submitted; process the data
 		form = StoredDishForm(data=request.POST)
 		if form.is_valid():
-			new_dish = form.save()
+			new_dish = form.save(commit=False)
+			new_dish.owner = request.user
 			new_dish.save()
-			return HttpResponseRedirect(reverse('mealmageapp:dishes'))
+			return redirect('mealmageapp:dishes')
 
 	context = {'form': form}
 	return render(request, 'mealmageapp/newdish.html', context)
 
 @login_required
-def dish_detail(request, dish_id): # how do I display all the values for each attribute in StoredDish?
+def dish_detail(request, dish_id):
 	dish = StoredDish.objects.get(id=dish_id)
 	context = {'dish': dish}
 	return render(request, 'mealmageapp/dish_detail.html', context)
 
-class DishDelete(DeleteView):
-	model = StoredDish
-	success_url = reverse_lazy('dishes/')	
+@login_required
+def dish_delete(request, dish_id):
+	dish = StoredDish.objects.get(id=dish_id)
+	if request.method == 'POST':
+		dish.delete()
+		return redirect('/')
+	context = {'dish': dish}
+	return render(request, 'mealmageapp/dish_delete.html', context)	
 
 @login_required
 def mealplanning(request):

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
+from django.urls import reverse
 
 from .models import StoredDish
 from .forms import StoredDishForm
@@ -51,7 +52,7 @@ def dish_delete(request, dish_id):
 	dish = StoredDish.objects.get(id=dish_id)
 	if request.method == 'POST':
 		dish.delete()
-		return redirect('/')
+		return redirect('mealmageapp:dishes')
 	context = {'dish': dish}
 	return render(request, 'mealmageapp/dish_delete.html', context)	
 

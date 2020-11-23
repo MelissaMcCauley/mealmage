@@ -30,6 +30,8 @@
 
 <!-- Need add Update and Delete buttons (will send to a page with a form for that) -->
 
+<a class="btn btn-sm btn-secondary" href="{% url 'mealmageapp:dishes' %}">Back to Dishes</a>
+
 <a class="btn btn-sm btn-primary" href="{% url 'mealmageapp:updatedish' dish.id %}">Update Dish</a>
 
 <a class="btn btn-sm btn-danger" href="{% url 'mealmageapp:dish_delete' dish.id %}">Delete</a>

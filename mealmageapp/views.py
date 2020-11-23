@@ -61,7 +61,8 @@ def updatedish(request, dish_id):
 			updated_dish = form.save(commit=False)
 			updated_dish.owner = request.user
 			updated_dish.save()
-			return redirect('mealmageapp:dishes')
+			return HttpResponseRedirect(reverse('mealmageapp:dish_detail',
+			 args=[dish.id]))
 
 	context = {'dish': dish, 'form': form}
 	return render(request, 'mealmageapp/updatedish.html', context)	

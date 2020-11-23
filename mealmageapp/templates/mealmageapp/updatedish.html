@@ -9,7 +9,7 @@
 	<form action="{% url 'mealmageapp:updatedish' dish.id %}" method='post'>
 		{% csrf_token %}
 		{{ form.as_p }}
-		<button name="submit">Save Dish</button>
+		<button name="submit">Save Update</button>
 	</form>
 	
 {% endblock content %}		

@@ -48,6 +48,26 @@ def dish_detail(request, dish_id):
 	return render(request, 'mealmageapp/dish_detail.html', context)
 
 @login_required
+def updatedish(request, dish_id):
+	dish = StoredDish.objects.get(id=dish_id)
+
+	if request.method != 'POST':
+		# No data submitted, create a blank form
+		form = StoredDishForm(instance=dish)
+	else:
+		# POST data submitted; process the data
+		form = StoredDishForm(instance=dish, data=request.POST)
+		if form.is_valid():
+			updated_dish = form.save(commit=False)
+			updated_dish.owner = request.user
+			updated_dish.save()
+			return redirect('mealmageapp:dishes')
+
+	context = {'dish': dish, 'form': form}
+	return render(request, 'mealmageapp/updatedish.html', context)	
+
+
+@login_required
 def dish_delete(request, dish_id):
 	dish = StoredDish.objects.get(id=dish_id)
 	if request.method == 'POST':

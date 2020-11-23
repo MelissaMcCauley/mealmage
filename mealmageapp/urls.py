@@ -23,7 +23,7 @@ urlpatterns = [
 
 	path('newdish/', views.newdish, name='newdish'),
 
-	# path('<int:dish_id>/updatedish/', views.updatedish, name='updatedish'),
+	path('<int:dish_id>/updatedish/', views.updatedish, name='updatedish'),
 
 	path('<int:dish_id>/dish_delete/', views.dish_delete, name='dish_delete'),
 

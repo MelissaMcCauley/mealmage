@@ -15,7 +15,7 @@ urlpatterns = [
 	# Meals page that is linked from Options
 	path('dishes/', views.dishes, name='dishes'),
 
-	path('mealplanning/', views.mealplanning, name='mealplanning'),
+	path('mealplans/', views.mealplans, name='mealplans'),
 
 	path('grocerylist/', views.grocerylist, name='grocerylist'),
 

@@ -78,9 +78,9 @@ def dish_delete(request, dish_id):
 	return render(request, 'mealmageapp/dish_delete.html', context)	
 
 @login_required
-def mealplanning(request):
+def mealplans(request):
 	"""Lets users create a meal plan from their stored dishes"""
-	return render(request, 'mealmageapp/mealplanning.html')
+	return render(request, 'mealmageapp/mealplans.html')
 
 @login_required
 def grocerylist(request):

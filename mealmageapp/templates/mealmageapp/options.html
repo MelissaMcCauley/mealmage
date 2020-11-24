@@ -2,17 +2,16 @@
 
 {% block content %}
 
-	<p>What would you like to do?</p>
 
 	<ul>
 		<li>
-			<a href="{% url 'mealmageapp:dishes' %}">Update Your Dishes</a>
+			<a href="{% url 'mealmageapp:dishes' %}">Your Dishes</a>
 		</li>	
 		<li>
-			<a href="{% url 'mealmageapp:mealplanning' %}">Create a Meal Plan</a>
+			<a href="{% url 'mealmageapp:mealplans' %}">Your Meal Plans</a>
 		</li>	
 		<li>
-			<a href="{% url 'mealmageapp:grocerylist' %}">Grocery List</a>
+			<a href="{% url 'mealmageapp:grocerylist' %}">Your Grocery Lists</a>
 		</li>
 	</ul>
 

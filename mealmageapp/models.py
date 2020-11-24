@@ -69,15 +69,26 @@ class StoredDish(models.Model):
 		return self.dish_title
 
 
-class MealPlan(models.Model):
+class DailyMealPlan(models.Model):
 	"""A collection of meals pulled from StoredDish for a certain period of time"""
-	meal_plan_dish_title = models.ForeignKey(StoredDish, 
-		on_delete=models.CASCADE)
-
-
-	def __str__(self):
-		"""Return a string representation of the model"""
-		return self.meal_plan_dish_title	
+	breakfast_dish_entree = models.CharField(max_length=200, blank=True)
+	breakfast_dish_side_1 = models.CharField(max_length=200, blank=True)
+	breakfast_dish_side_2 = models.CharField(max_length=200, blank=True)
+	breakfast_dish_side_3 = models.CharField(max_length=200, blank=True)
+	lunch_dish_entree = models.CharField(max_length=200, blank=True)
+	lunch_dish_side_1 = models.CharField(max_length=200, blank=True)
+	lunch_dish_side_2 = models.CharField(max_length=200, blank=True)
+	lunch_dish_side_3 = models.CharField(max_length=200, blank=True)
+	dinner_dish_entree = models.CharField(max_length=200, blank=True)
+	dinner_dish_side_1 = models.CharField(max_length=200, blank=True)
+	dinner_dish_side_2 = models.CharField(max_length=200, blank=True)
+	dinner_dish_side_3 = models.CharField(max_length=200, blank=True)
+	dessert_dish = models.CharField(max_length=200, blank=True)
+	snack_dish_1 = models.CharField(max_length=200, blank=True)
+	snack_dish_2 = models.CharField(max_length=200, blank=True)
+	snack_dish_3 = models.CharField(max_length=200, blank=True)
+	meal_plan_date = models.DateField()
+	owner = models.ForeignKey(User, on_delete=models.CASCADE)	
 
 
 class GroceryList(models.Model):

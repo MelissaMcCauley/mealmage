@@ -2,7 +2,7 @@
 
 {% block content %}
 
-	<p>Dish: {{ dish }}</p>
+	<p><strong>{{ dish }}</strong></p>
 	
 			<p>Dish Type:  {{ dish.dish_type }}</p>
 			<p>Meal Type:  {{ dish.meal_type }}</p>
@@ -34,6 +34,6 @@
 
 <a class="btn btn-sm btn-primary" href="{% url 'mealmageapp:updatedish' dish.id %}">Update Dish</a>
 
-<a class="btn btn-sm btn-danger" href="{% url 'mealmageapp:dish_delete' dish.id %}">Delete</a>
+<a class="btn btn-sm btn-danger" href="{% url 'mealmageapp:dish_delete' dish.id %}">Delete Dish</a>
 
 {% endblock content %}

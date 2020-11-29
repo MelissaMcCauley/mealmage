@@ -69,8 +69,8 @@ class StoredDish(models.Model):
 		return self.dish_title
 
 
-class DailyMealPlan(models.Model):
-	"""A collection of meals pulled from StoredDish for a certain period of time"""
+class DailyMenu(models.Model):
+	"""A collection of dishes pulled from StoredDish for a certain period of time"""
 	breakfast_dish_entree = models.CharField(max_length=200, blank=True)
 	breakfast_dish_side_1 = models.CharField(max_length=200, blank=True)
 	breakfast_dish_side_2 = models.CharField(max_length=200, blank=True)

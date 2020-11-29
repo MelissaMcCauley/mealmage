@@ -15,7 +15,7 @@ urlpatterns = [
 	# Meals page that is linked from Options
 	path('dishes/', views.dishes, name='dishes'),
 
-	path('mealplans/', views.mealplans, name='mealplans'),
+	path('daily_menu/', views.daily_menu, name='daily_menu'),
 
 	path('grocerylist/', views.grocerylist, name='grocerylist'),
 
@@ -28,4 +28,4 @@ urlpatterns = [
 	path('<int:dish_id>/dish_delete/', views.dish_delete, name='dish_delete'),
 
 
-]
+	]

@@ -78,8 +78,11 @@ def dish_delete(request, dish_id):
 	return render(request, 'mealmageapp/dish_delete.html', context)	
 
 @login_required
-def mealplans(request):
-	"""Lets users create a meal plan from their stored dishes"""
+def daily_menu(request, menu_date):
+	"""Displays menus a user has created from their stored dishes, 
+		one week at a time"""
+	date = DailyMealPlan.objects
+	context = {'date': date, 'dish': dish}
 	return render(request, 'mealmageapp/mealplans.html')
 
 @login_required

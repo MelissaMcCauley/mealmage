@@ -87,7 +87,7 @@ class DailyMenu(models.Model):
 	snack_dish_1 = models.CharField(max_length=200, blank=True)
 	snack_dish_2 = models.CharField(max_length=200, blank=True)
 	snack_dish_3 = models.CharField(max_length=200, blank=True)
-	meal_plan_date = models.DateField()
+	meal_plan_date = models.DateField(auto_now_add=False, auto_now=False)
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)	
 
 

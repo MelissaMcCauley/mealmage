@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
+from datetime import datetime, date
 
 from .models import StoredDish
 from .forms import StoredDishForm
@@ -78,12 +79,12 @@ def dish_delete(request, dish_id):
 	return render(request, 'mealmageapp/dish_delete.html', context)	
 
 @login_required
-def daily_menu(request, menu_date):
+def daily_menu(request):
 	"""Displays menus a user has created from their stored dishes, 
 		one week at a time"""
-	date = DailyMealPlan.objects
-	context = {'date': date, 'dish': dish}
-	return render(request, 'mealmageapp/mealplans.html')
+	# need to display current week based on current date
+	# context = {}
+	return render(request, 'mealmageapp/daily_menu.html')
 
 @login_required
 def grocerylist(request):

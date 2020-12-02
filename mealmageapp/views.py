@@ -83,8 +83,46 @@ def daily_menu(request):
 	"""Displays menus a user has created from their stored dishes, 
 		one week at a time"""
 	# need to display current week based on current date
-	# context = {}
-	return render(request, 'mealmageapp/daily_menu.html')
+	
+	day_of_week = datetime.now().weekday()
+	today = datetime.now().toordinal()
+	if day_of_week == 6:
+		sun_date = datetime.now().strftime("%m/%d/%Y")
+	if day_of_week == 0:
+		sun_date_ord = today - 1
+		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
+	if day_of_week == 1:
+		sun_date_ord = today - 2
+		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
+	if day_of_week == 2:
+		sun_date_ord = today - 3
+		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
+	if day_of_week == 3:
+		sun_date_ord = today - 4
+		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
+	if day_of_week == 4:
+		sun_date_ord = today - 5
+		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
+	if day_of_week == 5:
+		sun_date_ord = today - 6
+		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
+
+	mon_date_ord = sun_date_ord + 1
+	mon_date = date.fromordinal(mon_date_ord).strftime("%m/%d/%Y")
+	tue_date_ord = sun_date_ord + 2
+	tue_date = date.fromordinal(tue_date_ord).strftime("%m/%d/%Y")
+	wed_date_ord = sun_date_ord + 3
+	wed_date = date.fromordinal(wed_date_ord).strftime("%m/%d/%Y")
+	thu_date_ord = sun_date_ord + 4
+	thu_date = date.fromordinal(thu_date_ord).strftime("%m/%d/%Y")
+	fri_date_ord = sun_date_ord + 5
+	fri_date = date.fromordinal(fri_date_ord).strftime("%m/%d/%Y")
+	sat_date_ord = sun_date_ord + 6
+	sat_date = date.fromordinal(sat_date_ord).strftime("%m/%d/%Y")
+	context = {"sun_date": sun_date, "mon_date": mon_date, 
+	"tue_date": tue_date, "wed_date": wed_date, "thu_date": thu_date,
+	"fri_date": fri_date, "sat_date": sat_date}
+	return render(request, 'mealmageapp/daily_menu.html', context)
 
 @login_required
 def grocerylist(request):

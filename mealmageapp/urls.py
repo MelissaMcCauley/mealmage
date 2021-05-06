@@ -1,8 +1,8 @@
 """Defines URL patterns for mealmageapp"""
 
 from django.urls import path
-
 from . import views
+
 
 app_name = 'mealmageapp'
 urlpatterns = [
@@ -15,7 +15,7 @@ urlpatterns = [
 	# Meals page that is linked from Options
 	path('dishes/', views.dishes, name='dishes'),
 
-	path('daily_menu/', views.daily_menu, name='daily_menu'),
+	path('weekly_menu/', views.weekly_menu , name='weekly_menu'),
 
 	path('grocerylist/', views.grocerylist, name='grocerylist'),
 

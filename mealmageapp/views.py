@@ -3,8 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from datetime import datetime, date
+from django.views.generic.dates import WeekArchiveView
+from django.core.paginator import Paginator
+from calendar import HTMLCalendar
 
-from .models import StoredDish
+from .models import StoredDish, DailyMenu
 from .forms import StoredDishForm
 
 def index(request):
@@ -79,50 +82,150 @@ def dish_delete(request, dish_id):
 	return render(request, 'mealmageapp/dish_delete.html', context)	
 
 @login_required
-def daily_menu(request):
+def weekly_menu(request):
 	"""Displays menus a user has created from their stored dishes, 
 		one week at a time"""
-	# need to display current week based on current date
-	
+	# Determination of the dates of the current week:
+
 	day_of_week = datetime.now().weekday()
 	today = datetime.now().toordinal()
-	if day_of_week == 6:
-		sun_date = datetime.now().strftime("%m/%d/%Y")
-	if day_of_week == 0:
-		sun_date_ord = today - 1
-		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
-	if day_of_week == 1:
-		sun_date_ord = today - 2
-		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
-	if day_of_week == 2:
-		sun_date_ord = today - 3
-		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
-	if day_of_week == 3:
-		sun_date_ord = today - 4
-		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
-	if day_of_week == 4:
-		sun_date_ord = today - 5
-		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
-	if day_of_week == 5:
-		sun_date_ord = today - 6
+
+	if request.method == 'GET':
+		# Determining the most recent Sunday:
+		if day_of_week == 6:
+			sun_date = datetime.now().strftime("%m/%d/%Y")
+		if day_of_week == 0:
+			sun_date_ord = today - 1
+		if day_of_week == 1:
+			sun_date_ord = today - 2
+		if day_of_week == 2:
+			sun_date_ord = today - 3
+		if day_of_week == 3:
+			sun_date_ord = today - 4
+		if day_of_week == 4:
+			sun_date_ord = today - 5
+		if day_of_week == 5:
+			sun_date_ord = today - 6
+			
 		sun_date = date.fromordinal(sun_date_ord).strftime("%m/%d/%Y")
 
-	mon_date_ord = sun_date_ord + 1
-	mon_date = date.fromordinal(mon_date_ord).strftime("%m/%d/%Y")
-	tue_date_ord = sun_date_ord + 2
-	tue_date = date.fromordinal(tue_date_ord).strftime("%m/%d/%Y")
-	wed_date_ord = sun_date_ord + 3
-	wed_date = date.fromordinal(wed_date_ord).strftime("%m/%d/%Y")
-	thu_date_ord = sun_date_ord + 4
-	thu_date = date.fromordinal(thu_date_ord).strftime("%m/%d/%Y")
-	fri_date_ord = sun_date_ord + 5
-	fri_date = date.fromordinal(fri_date_ord).strftime("%m/%d/%Y")
-	sat_date_ord = sun_date_ord + 6
-	sat_date = date.fromordinal(sat_date_ord).strftime("%m/%d/%Y")
-	context = {"sun_date": sun_date, "mon_date": mon_date, 
-	"tue_date": tue_date, "wed_date": wed_date, "thu_date": thu_date,
-	"fri_date": fri_date, "sat_date": sat_date}
-	return render(request, 'mealmageapp/daily_menu.html', context)
+		# Identifying the dates of the rest of the current week:	
+		mon_date_ord = sun_date_ord + 1
+		mon_date = date.fromordinal(mon_date_ord).strftime("%m/%d/%Y")
+		tue_date_ord = sun_date_ord + 2
+		tue_date = date.fromordinal(tue_date_ord).strftime("%m/%d/%Y")
+		wed_date_ord = sun_date_ord + 3
+		wed_date = date.fromordinal(wed_date_ord).strftime("%m/%d/%Y")
+		thu_date_ord = sun_date_ord + 4
+		thu_date = date.fromordinal(thu_date_ord).strftime("%m/%d/%Y")
+		fri_date_ord = sun_date_ord + 5
+		fri_date = date.fromordinal(fri_date_ord).strftime("%m/%d/%Y")
+		sat_date_ord = sun_date_ord + 6
+		sat_date = date.fromordinal(sat_date_ord).strftime("%m/%d/%Y")
+		
+
+	# Displays next week dates if that button is clicked:
+	elif request.method == "POST":
+		if request.POST.get('next_week'):
+
+			if day_of_week == 6:
+				sun_date_ord = today
+			if day_of_week == 0:
+				sun_date_ord = today - 1
+			if day_of_week == 1:
+				sun_date_ord = today - 2
+			if day_of_week == 2:
+				sun_date_ord = today - 3
+			if day_of_week == 3:
+				sun_date_ord = today - 4
+			if day_of_week == 4:
+				sun_date_ord = today - 5
+			if day_of_week == 5:
+				sun_date_ord = today - 6
+
+			sun_date_ord_next = sun_date_ord + 7
+			sun_date = date.fromordinal(mon_date_ord).strftime("%m/%d/%Y")
+			mon_date_ord_next = mon_date_ord + 7
+			mon_date = date.fromordinal(mon_date_ord).strftime("%m/%d/%Y")
+			tue_date_ord_next = tue_date_ord + 7
+			tue_date = date.fromordinal(tue_date_ord).strftime("%m/%d/%Y")
+			wed_date_ord_next = wed_date_ord + 7
+			wed_date = date.fromordinal(wed_date_ord).strftime("%m/%d/%Y")
+			thu_date_ord_next = thu_date_ord + 7
+			thu_date = date.fromordinal(thu_date_ord).strftime("%m/%d/%Y")
+			fri_date_ord_next = fri_date_ord + 7
+			fri_date = date.fromordinal(fri_date_ord).strftime("%m/%d/%Y")
+			sat_date_ord_next = sat_date_ord + 7
+			sat_date = date.fromordinal(sat_date_ord).strftime("%m/%d/%Y")
+
+		# Displays prev week dates if that button is clicked:
+		elif request.POST.get('prev_week'):
+			
+			if day_of_week == 6:
+				sun_date_ord = today
+			if day_of_week == 0:
+				sun_date_ord = today - 1
+			if day_of_week == 1:
+				sun_date_ord = today - 2
+			if day_of_week == 2:
+				sun_date_ord = today - 3
+			if day_of_week == 3:
+				sun_date_ord = today - 4
+			if day_of_week == 4:
+				sun_date_ord = today - 5
+			if day_of_week == 5:
+				sun_date_ord = today - 6
+
+			sun_date_ord_prev = sun_date_ord - 7
+			sun_date = date.fromordinal(mon_date_ord).strftime("%m/%d/%Y")
+			mon_date_ord_prev = mon_date_ord - 7
+			mon_date = date.fromordinal(mon_date_ord).strftime("%m/%d/%Y")
+			tue_date_ord_prev = tue_date_ord - 7
+			tue_date = date.fromordinal(tue_date_ord).strftime("%m/%d/%Y")
+			wed_date_ord_prev = wed_date_ord - 7
+			wed_date = date.fromordinal(wed_date_ord).strftime("%m/%d/%Y")
+			thu_date_ord_prev = thu_date_ord - 7
+			thu_date = date.fromordinal(thu_date_ord).strftime("%m/%d/%Y")
+			fri_date_ord_prev = fri_date_ord - 7
+			fri_date = date.fromordinal(fri_date_ord).strftime("%m/%d/%Y")
+			sat_date_ord_prev = sat_date_ord - 7
+			sat_date = date.fromordinal(sat_date_ord).strftime("%m/%d/%Y")
+	
+	# NEED TO ADD - code to pull in the menu data from the DailyMenu
+	# table/model for each date
+
+	context = {"sun_date": sun_date, 
+			   "mon_date": mon_date, 
+			   "tue_date": tue_date, 
+			   "wed_date": wed_date, 
+			   "thu_date": thu_date,
+			   "fri_date": fri_date, 
+			   "sat_date": sat_date,
+	}
+	return render(request, 'mealmageapp/weekly_menu.html', context)
+
+# @login_required
+# def next_weekly_menu(request):
+
+
+# @login_required
+# def prev_weekly_menu(request):
+
+
+
+
+# Attempting to try using Paginator for the weekly_menu page
+# This may not work either - how can it pull in dates if not all dates
+# are filled in in the DailyMenu table?
+# def weekly_menu(request):
+# 	daily_menu_objects = DailyMenu.objects.all()
+# 	p = Paginator(daily_menu_objects, 7)
+
+
+
+
+# def detail_daily_menu(request):
+
 
 @login_required
 def grocerylist(request):

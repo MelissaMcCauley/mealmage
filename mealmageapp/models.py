@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-
 class StoredDish(models.Model):
 	"""A particular dish that has been added by the user to their account"""
 	DISH_TYPE_CHOICES = [

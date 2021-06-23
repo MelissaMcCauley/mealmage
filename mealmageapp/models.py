@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
+class Profile(models.Model):
+	user = models.OneToOneField(settings.AUTH_USER_MODEL,
+								on_delete=models.CASCADE)
+	photo = models.ImageField(upload_to='users/%Y/%m/%d/',
+							  blank=True)
+
+	def __str__(self):
+		return f'Profile for user {self.user.username}'
 
 class StoredDish(models.Model):
 	"""A particular dish that has been added by the user to their account"""
@@ -13,7 +22,7 @@ class StoredDish(models.Model):
 	MEAL_TYPE_CHOICES = [
 		('breakfast', 'Breakfast'),
 		('brunch', 'Brunch'),
-		('lunch', 'Lunch'),
+		('lunch', 'Lunch'),	
 		('dinner', 'Dinner'),
 	]
 	CUISINE_TYPE_CHOICES = [
@@ -67,9 +76,15 @@ class StoredDish(models.Model):
 		"""Return a string representation of the model"""
 		return self.dish_title
 
+class MenuCalendarEntry(models.Model):
+	breakfast_entree = models.CharField(max_length=200, blank=True)
+	lunch_entree = models.CharField(max_length=200, blank=True)
+	dinner_entree = models.CharField(max_length=200, blank=True)
+	dessert = models.CharField(max_length=200, blank=True)
+
 
 class DailyMenu(models.Model):
-	"""A collection of dishes pulled from StoredDish for a certain period of time"""
+	"""A collection of dishes pulled from StoredDish for a certain date"""
 	breakfast_dish_entree = models.CharField(max_length=200, blank=True)
 	breakfast_dish_side_1 = models.CharField(max_length=200, blank=True)
 	breakfast_dish_side_2 = models.CharField(max_length=200, blank=True)
@@ -86,8 +101,15 @@ class DailyMenu(models.Model):
 	snack_dish_1 = models.CharField(max_length=200, blank=True)
 	snack_dish_2 = models.CharField(max_length=200, blank=True)
 	snack_dish_3 = models.CharField(max_length=200, blank=True)
-	meal_plan_date = models.DateField(auto_now_add=False, auto_now=False)
-	owner = models.ForeignKey(User, on_delete=models.CASCADE)	
+	menu_date = models.DateField(auto_now_add=False, auto_now=False)
+	owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+	class Meta:
+		verbose_name_plural = 'Daily Menus'
+
+	def __str__(self):
+		"""Return a string representation of the model"""
+		return self.menu_date
 
 
 class GroceryList(models.Model):

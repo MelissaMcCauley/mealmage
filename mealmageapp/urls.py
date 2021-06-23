@@ -3,8 +3,8 @@
 from django.urls import path
 from . import views
 
-
 app_name = 'mealmageapp'
+
 urlpatterns = [
 	# Home page
 	path('', views.index, name='index'),
@@ -15,7 +15,7 @@ urlpatterns = [
 	# Meals page that is linked from Options
 	path('dishes/', views.dishes, name='dishes'),
 
-	path('weekly_menu/', views.weekly_menu , name='weekly_menu'),
+	path('menu_calendar/', views.menu_calendar , name='menu_calendar'),
 
 	path('grocerylist/', views.grocerylist, name='grocerylist'),
 

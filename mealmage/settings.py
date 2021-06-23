@@ -137,3 +137,6 @@ LOGIN_URL = '/users/login/'
 BOOTSTRAP4 = {
     'include_jquery': True,
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

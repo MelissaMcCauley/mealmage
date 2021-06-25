@@ -77,6 +77,7 @@ class StoredDish(models.Model):
 		return self.dish_title
 
 class MenuCalendarEntry(models.Model):
+	menu_date = models.DateField(unique=True, null=True)
 	breakfast_entree = models.CharField(max_length=200, blank=True)
 	lunch_entree = models.CharField(max_length=200, blank=True)
 	dinner_entree = models.CharField(max_length=200, blank=True)

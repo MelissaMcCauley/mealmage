@@ -12,10 +12,11 @@ urlpatterns = [
 	# Options page that comes up after logging in
 	path('options/', views.options, name='options'),
 
-	# Meals page that is linked from Options
+	# Dishes page that is linked from Options
 	path('dishes/', views.dishes, name='dishes'),
 
-	path('menu_calendar/', views.menu_calendar , name='menu_calendar'),
+	# Your Menus page that is linked from Options
+	path('menus/', views.menus, name='menus'),
 
 	path('grocerylist/', views.grocerylist, name='grocerylist'),
 

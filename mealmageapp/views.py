@@ -82,7 +82,8 @@ def dish_delete(request, dish_id):
 	return render(request, 'mealmageapp/dish_delete.html', context)	
 
 @login_required
-def menu_calendar(request):
+def menus(request): 
+	return render(request, 'mealmageapp/menus.html')
 	"""Displays a calendar of the user's menus a user which are created from their stored dishes"""
 	# Need to figure out how to implement menu calendar (React??)
 
